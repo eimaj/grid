@@ -1,0 +1,31 @@
+//* GRID CONFIG *
+$universal_gutter_width: 20px;
+$total_columns: 12;
+
+//* BODY PADDING *
+$body_padding: $universal_gutter_width;
+
+//* BREAKPOINTS (px) *
+$max_width: 1280px;
+$lg_width: 1024px;
+$md_width: 768px;
+$sm_width: 400px;
+
+//* BREAKPOINTS (%) *
+$min_width: 90%;
+$min_gutter: 2%;
+
+//* CLASS NAMES *
+$class_container: "container";
+$class_row: "row";
+$class_column: "col";
+$class_push: "push";
+$class_overflow: "cols";
+$class_width_pixel: "w";
+$class_width_percent: "inner";
+
+////////////////////////////////////////////////////////////////////////////////
+//* YOU PROBABLY DON'T NEED TO CHANGE ANYTHING PAST THIS POINT *
+////////////////////////////////////////////////////////////////////////////////
+
+@import "grid/init";

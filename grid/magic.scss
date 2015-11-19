@@ -1,0 +1,89 @@
+//* WIDTH MIXINS *
+@function pixel_width($column_index) {
+  $column_width: (($total_width + $gutter_width)/$total_columns)*$column_index;
+  @return ($column_width - $gutter_width);
+}
+
+@function percent_width($column_index) {
+  // *(100% - total-gutters) / number-of-things
+  $number_of_columns: $total_columns / $column_index;
+  $total_gutters: ($number_of_columns - 1) * $universal_gutter_width;
+  @return calc((100% - #{$total_gutters}) / #{$number_of_columns});
+}
+
+//* CLASS HELPERS *
+@mixin generate_universal_helper_classes() {
+  .#{$class_row} {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .#{$class_container} {
+    position: relative;
+    box-sizing: border-box;
+    max-width: $max_width;
+    margin: 0 auto;
+  }
+
+  .#{$class_column} {
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .#{$class_overflow} {
+    overflow: hidden;
+  }
+}
+
+@mixin generate_classes_for_breakpoint($bp, $bp_width) {
+  @include media($bp) {
+    @include generate_classes_for_pixel_width($total_columns);
+  }
+}
+
+@mixin generate_classes_for_pixel_width($_total_columns) {
+  .#{$class_container} {
+    width: $total_width;
+  }
+
+  //* Helper Class: Pixel Width */
+  @for $i from 1 through $_total_columns {
+    .#{$class_width_pixel}#{$i} {
+      width: 100%;
+
+      @if ($_total_columns > 1) {
+        width: pixel_width($i);
+      }
+    }
+  }
+
+  //* Helper Class: Pixel Position */
+  @for $i from 0 through ($_total_columns - 1) {
+    .#{$class_push}#{$i} {
+      margin-left: 0;
+
+      @if ($_total_columns > 1) {
+        margin-left: ($gutter_width + pixel_width($i));
+      }
+    }
+  }
+}
+
+@mixin generate_classes_for_percent_width($_total_columns) {
+  @for $i from 1 through $_total_columns {
+    .#{$class_width_percent}#{$i} {
+      width: 100%;
+
+      @if ($_total_columns > 1) {
+        float: left;
+        width: percent_width($i);
+        margin-right: $universal_gutter_width;
+        &.omega {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

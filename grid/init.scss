@@ -1,0 +1,62 @@
+* {
+  outline: none;
+}
+html {
+  height: 100%;
+}
+body {
+  min-width: 320px; // Context: iPhone4 == 320px *
+  min-height: 100%;
+}
+
+//* INIT: *
+@import "grid/breakpoints";
+@import "grid/magic";
+@include generate_universal_helper_classes();
+
+//* INIT: MINIMUM *
+.#{$class_column} {
+  width: 100%;
+  margin-right: auto;
+}
+
+@for $i from 0 through ($total_columns - 1) {
+  .#{$class_push}#{$i} {
+    margin: 0;
+  }
+}
+
+//* LAYOUT: MINIMUM (%) *
+$total_width: $min_width;
+$gutter_width: $min_gutter;
+
+@include generate_classes_for_pixel_width(1);
+@include generate_classes_for_percent_width(1);
+
+//* INIT: SMALL AND UP *
+$gutter_width: $universal_gutter_width;
+
+@include bp-sm {
+  @include generate_classes_for_percent_width($total_columns);
+
+  .#{$class_column} {
+    float: left;
+    margin-right: -100%;
+  }
+}
+
+//* LAYOUT: SMALL (px) *
+$total_width: ($sm_width)-($body_padding*2);
+@include generate_classes_for_breakpoint($bp_sm, $sm_width);
+
+//* LAYOUT: MEDIUM (px) *
+$total_width: ($md_width)-($body_padding*2);
+@include generate_classes_for_breakpoint($bp_md, $md_width);
+
+//* LAYOUT: LARGE (px) *
+$total_width: ($lg_width)-($body_padding*2);
+@include generate_classes_for_breakpoint($bp_lg, $lg_width);
+
+//* LAYOUT: MAXIMUM (px) *
+$total_width: ($max_width)-($body_padding*2);
+@include generate_classes_for_breakpoint($bp_max, $max_width);
