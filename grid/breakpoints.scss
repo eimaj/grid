@@ -1,33 +1,37 @@
 //* BREAKPOINTS *
-$bp_max: "screen and (min-width: #{$max_width})";
-$bp_lg: "screen and (min-width: #{$lg_width})";
-$bp_md: "screen and (min-width: #{$md_width})";
-$bp_sm: "screen and (min-width: #{$sm_width})";
-$bp_min: "screen and (max-width: #{$sm_width - 1px})";
+$bp-max: "screen and (min-width: #{$max-width})";
+$bp-lg: "screen and (min-width: #{$lg-width})";
+$bp-md: "screen and (min-width: #{$md-width})";
+$bp-sm: "screen and (min-width: #{$sm-width})";
+$bp-min: "screen and (max-width: #{$sm-width - 1px})";
 
 //* MEDIA & BREAKPOINT HELPERS *
-@mixin media($media_query) {
-  @media #{$media_query} {
+@mixin media($media-query) {
+  @media #{$media-query} {
     @content;
   }
 }
+
 @mixin bp-max {
-  @include media($bp_max) {
+  @include media($bp-max) {
     @content;
   }
 }
+
 @mixin bp-lg {
-  @include media($bp_lg) {
+  @include media($bp-lg) {
     @content;
   }
 }
+
 @mixin bp-md {
-  @include media($bp_md) {
+  @include media($bp-md) {
     @content;
   }
 }
+
 @mixin bp-sm {
-  @include media($bp_sm) {
+  @include media($bp-sm) {
     @content;
   }
 }
