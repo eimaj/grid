@@ -1,85 +1,86 @@
 //* WIDTH MIXINS *
-@function pixel_width($column_index) {
-  $column_width: (($total_width + $gutter_width)/$total_columns)*$column_index;
-  @return ($column_width - $gutter_width);
+@function pixel-width($column-index) {
+  $column-width: (($total-width + $gutter-width)/$total-columns)*$column-index;
+  @return ($column-width - $gutter-width);
 }
 
-@function percent_width($column_index) {
+@function percent-width($column-index) {
   // *(100% - total-gutters) / number-of-things
-  $number_of_columns: $total_columns / $column_index;
-  $total_gutters: ($number_of_columns - 1) * $universal_gutter_width;
-  @return calc((100% - #{$total_gutters}) / #{$number_of_columns});
+  $number-of-columns: $total-columns / $column-index;
+  $total-gutters: ($number-of-columns - 1) * $universal-gutter-width;
+  @return calc((100% - #{$total-gutters}) / #{$number-of-columns});
 }
 
 //* CLASS HELPERS *
-@mixin generate_universal_helper_classes() {
-  .#{$class_row} {
+@mixin generate-universal-helper-classes() {
+  .#{$class-row} {
     position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
     width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
-  .#{$class_container} {
+  .#{$class-container} {
     position: relative;
-    box-sizing: border-box;
-    max-width: $max_width;
     margin: 0 auto;
+    max-width: $max-width;
+    box-sizing: border-box;
   }
 
-  .#{$class_column} {
+  .#{$class-column} {
     position: relative;
     box-sizing: border-box;
   }
 
-  .#{$class_overflow} {
+  .#{$class-overflow} {
     overflow: hidden;
   }
 }
 
-@mixin generate_classes_for_breakpoint($bp, $bp_width) {
+@mixin generate-classes-for-breakpoint($bp, $bp-width) {
   @include media($bp) {
-    @include generate_classes_for_pixel_width($total_columns);
+    @include generate-classes-for-pixel-width($total-columns);
   }
 }
 
-@mixin generate_classes_for_pixel_width($_total_columns) {
-  .#{$class_container} {
-    width: $total_width;
+@mixin generate-classes-for-pixel-width($-total-columns) {
+  .#{$class-container} {
+    width: $total-width;
   }
 
   //* Helper Class: Pixel Width */
-  @for $i from 1 through $_total_columns {
-    .#{$class_width_pixel}#{$i} {
+  @for $i from 1 through $-total-columns {
+    .#{$class-width-pixel}#{$i} {
       width: 100%;
 
-      @if ($_total_columns > 1) {
-        width: pixel_width($i);
+      @if ($-total-columns > 1) {
+        width: pixel-width($i);
       }
     }
   }
 
   //* Helper Class: Pixel Position */
-  @for $i from 0 through ($_total_columns - 1) {
-    .#{$class_push}#{$i} {
+  @for $i from 0 through ($-total-columns - 1) {
+    .#{$class-push}#{$i} {
       margin-left: 0;
 
-      @if ($_total_columns > 1) {
-        margin-left: ($gutter_width + pixel_width($i));
+      @if ($-total-columns > 1) {
+        margin-left: ($gutter-width + pixel-width($i));
       }
     }
   }
 }
 
-@mixin generate_classes_for_percent_width($_total_columns) {
-  @for $i from 1 through $_total_columns {
-    .#{$class_width_percent}#{$i} {
+@mixin generate-classes-for-percent-width($-total-columns) {
+  @for $i from 1 through $-total-columns {
+    .#{$class-width-percent}#{$i} {
       width: 100%;
 
-      @if ($_total_columns > 1) {
+      @if ($-total-columns > 1) {
         float: left;
-        width: percent_width($i);
-        margin-right: $universal_gutter_width;
+        margin-right: $universal-gutter-width;
+        width: percent-width($i);
+
         &.omega {
           margin-right: 0;
         }
