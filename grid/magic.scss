@@ -11,32 +11,6 @@
   @return calc((100% - #{$total-gutters}) / #{$number-of-columns});
 }
 
-//* CLASS HELPERS *
-@mixin generate-universal-helper-classes() {
-  .#{$class-row} {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-
-  .#{$class-container} {
-    position: relative;
-    margin: 0 auto;
-    max-width: $max-width;
-    box-sizing: border-box;
-  }
-
-  .#{$class-column} {
-    position: relative;
-    box-sizing: border-box;
-  }
-
-  .#{$class-overflow} {
-    overflow: hidden;
-  }
-}
-
 @mixin generate-classes-for-breakpoint($bp, $bp-width) {
   @include media($bp) {
     @include generate-classes-for-pixel-width($total-columns);
@@ -48,7 +22,7 @@
     width: $total-width;
   }
 
-  //* Helper Class: Pixel Width */
+  //* PIXEL: WIDTH *
   @for $i from 1 through $-total-columns {
     .#{$class-width-pixel}#{$i} {
       width: 100%;
@@ -59,7 +33,7 @@
     }
   }
 
-  //* Helper Class: Pixel Position */
+  //* PIXEL: POSITION *
   @for $i from 0 through ($-total-columns - 1) {
     .#{$class-push}#{$i} {
       margin-left: 0;
@@ -72,14 +46,15 @@
 }
 
 @mixin generate-classes-for-percent-width($-total-columns) {
+  //* PERCENT: WIDTH *
   @for $i from 1 through $-total-columns {
     .#{$class-width-percent}#{$i} {
       width: 100%;
 
       @if ($-total-columns > 1) {
         float: left;
-        margin-right: $universal-gutter-width;
         width: percent-width($i);
+        margin-right: $universal-gutter-width;
 
         &.omega {
           margin-right: 0;

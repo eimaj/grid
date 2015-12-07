@@ -48,6 +48,30 @@ $class-width-percent: "inner";
 
 ### Breakpoint Helpers
 
+There are custom mixins created for $class-container, $class-row, $class-column, $class-overflow. If you need the base styles of these elements to another class, you can do so like this:
+
+```
+$class-container: "container";
+$class-row: "row";
+$class-column: "col";
+$class-overflow: "cols";
+
+.example-container {
+  @include grid($class-container);
+}
+.example-row {
+  @include grid($class-row);
+}
+.example-col {
+  @include grid($class-column);
+}
+.example-cols {
+  @include grid($class-overflow);
+}
+```
+
+### Breakpoint Helpers
+
 This also creates some breakpoint mixins based on your breakpoint widths that you can use if you like.
 
 ```

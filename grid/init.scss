@@ -11,12 +11,16 @@ body {
   min-height: 100%;
 }
 
-//* INIT: *
+//* INIT BREAKPOINT: *
 @import "breakpoints";
+
+//* INIT: HELPERS *
+@import "helpers";
+
+//* INIT: MAGIC *
 @import "magic";
 @include generate_universal_helper_classes();
 
-//* INIT: MINIMUM *
 .#{$class-column} {
   width: 100%;
   margin-right: auto;
