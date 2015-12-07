@@ -10,8 +10,8 @@ body {
 }
 
 //* INIT: *
-@import "grid/breakpoints";
-@import "grid/magic";
+@import "breakpoints";
+@import "magic";
 @include generate_universal_helper_classes();
 
 //* INIT: MINIMUM *
