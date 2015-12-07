@@ -1,9 +1,11 @@
 * {
   outline: none;
 }
+
 html {
   height: 100%;
 }
+
 body {
   min-width: 320px; // Context: iPhone4 == 320px *
   min-height: 100%;
@@ -15,48 +17,48 @@ body {
 @include generate_universal_helper_classes();
 
 //* INIT: MINIMUM *
-.#{$class_column} {
+.#{$class-column} {
   width: 100%;
   margin-right: auto;
 }
 
-@for $i from 0 through ($total_columns - 1) {
-  .#{$class_push}#{$i} {
+@for $i from 0 through ($total-columns - 1) {
+  .#{$class-push}#{$i} {
     margin: 0;
   }
 }
 
 //* LAYOUT: MINIMUM (%) *
-$total_width: $min_width;
-$gutter_width: $min_gutter;
+$total-width: $min-width;
+$gutter-width: $min-gutter;
 
-@include generate_classes_for_pixel_width(1);
-@include generate_classes_for_percent_width(1);
+@include generate-classes-for-pixel-width(1);
+@include generate-classes-for-percent-width(1);
 
 //* INIT: SMALL AND UP *
-$gutter_width: $universal_gutter_width;
+$gutter-width: $universal-gutter-width;
 
 @include bp-sm {
-  @include generate_classes_for_percent_width($total_columns);
+  @include generate-classes-for-percent-width($total-columns);
 
-  .#{$class_column} {
+  .#{$class-column} {
     float: left;
     margin-right: -100%;
   }
 }
 
 //* LAYOUT: SMALL (px) *
-$total_width: ($sm_width)-($body_padding*2);
-@include generate_classes_for_breakpoint($bp_sm, $sm_width);
+$total-width: ($sm-width)-($body-padding*2);
+@include generate-classes-for-breakpoint($bp-sm, $sm-width);
 
 //* LAYOUT: MEDIUM (px) *
-$total_width: ($md_width)-($body_padding*2);
-@include generate_classes_for_breakpoint($bp_md, $md_width);
+$total-width: ($md-width)-($body-padding*2);
+@include generate-classes-for-breakpoint($bp-md, $md-width);
 
 //* LAYOUT: LARGE (px) *
-$total_width: ($lg_width)-($body_padding*2);
-@include generate_classes_for_breakpoint($bp_lg, $lg_width);
+$total-width: ($lg-width)-($body-padding*2);
+@include generate-classes-for-breakpoint($bp-lg, $lg-width);
 
 //* LAYOUT: MAXIMUM (px) *
-$total_width: ($max_width)-($body_padding*2);
-@include generate_classes_for_breakpoint($bp_max, $max_width);
+$total-width: ($max-width)-($body-padding*2);
+@include generate-classes-for-breakpoint($bp-max, $max-width);
