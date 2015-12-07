@@ -46,7 +46,7 @@ $class-width-pixel: "w";
 $class-width-percent: "inner";
 ```
 
-### Breakpoint Helpers
+### Some Mixins
 
 There are custom mixins created for $class-container, $class-row, $class-column, $class-overflow. If you need the base styles of these elements to another class, you can do so like this:
 
